@@ -7,12 +7,16 @@
 }
 
 .container {
-    background-color: pink;
+
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F2%2F56%2F9RekFJ.jpg&f=1&nofb=1");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
@@ -23,18 +27,21 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
 }
 
 .calendar {
     border: 2px solid black;
     width: 100%;
     height: 100%;
+    background-color: white;
 }
 
 .box-calendar-top {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 
 }
 
