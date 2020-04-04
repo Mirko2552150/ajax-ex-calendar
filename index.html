@@ -2,13 +2,32 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Ajax CDN</title>
+        <meta name="viewport:" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha256-usTqAE1ywvdMtksWzdeWzD75MsfJN0h0U7y2NtZL3N0=" crossorigin="anonymous"></script>
+
     </head>
     <body>
+        <div class="container">
+            <div class="box-calendar">
+                    <div class="box-calendar-top">
+                        <button class="prev" type="button" name="button"> < </button><span><span id="nome-mese"> Gennaio </span> 2018 </span><button class="succ" type="button" name="button"> > </button>
+                    </div>
+                <div class="calendar">
+
+                </div>
+            </div
+        </div>
 
 
-
+        <script id="day-template" type="text/x-handlebars-template">
+            <div class="ggCalendario">
+                <span data-day="{{dataDay}}">{{day}}</span>
+            </div>
+        </script>
 
         <script src="js/main.js" charset="utf-8"></script>
     </body>
