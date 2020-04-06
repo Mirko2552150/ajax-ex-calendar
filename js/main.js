@@ -1,10 +1,12 @@
 
 var htmlGiorno = $('#day-template').html();
 var templateGiorno = Handlebars.compile(htmlGiorno); // mettiamo la SOURCE ED IL TEPLATE PARLANTI
-// stiampiamo il mese corrente
+
+// var htmlGiornoVuoto = $('#day-template-vuoto').html();
+// var templateGiornoVuoto = Handlebars.compile(htmlGiornoVuoto); // mettiamo la SOURCE ED IL TEPLATE PARLANTI
+
 var dataIniziale = moment('2018-01-01'); // inseriamo la data da cui vogliamo partire
 stampaGiorniMese(dataIniziale); // mi stampo i giorni ed il mese corrente
-// a seguito del click stampare il mese successivo
 stampaFestivi(0, 2018); // lo faccio partire dal mese 0 = gennaio
 var dataIniziale = moment('2018-01-01');
 var limiteIniziale = moment('2018-01-01');
@@ -24,7 +26,6 @@ $('.succ').click(function (){ // al click sul bottone succ
     }
 });
 
-// a seguito del click stampare il mese precedente
 $('.prev').click(function (){ // al click sul bottone succ
     if(dataIniziale.isSameOrBefore(limiteIniziale)){
         alert('Hai provato ad hackerarmi! :( ');
