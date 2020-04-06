@@ -2,17 +2,15 @@
 var htmlGiorno = $('#day-template').html();
 var templateGiorno = Handlebars.compile(htmlGiorno); // mettiamo la SOURCE ED IL TEPLATE PARLANTI
 
-// var htmlGiornoVuoto = $('#day-template-vuoto').html();
-// var templateGiornoVuoto = Handlebars.compile(htmlGiornoVuoto); // mettiamo la SOURCE ED IL TEPLATE PARLANTI
-
 var dataIniziale = moment('2018-01-01'); // inseriamo la data da cui vogliamo partire
 stampaGiorniMese(dataIniziale); // mi stampo i giorni ed il mese corrente
 stampaFestivi(0, 2018); // lo faccio partire dal mese 0 = gennaio
-var dataIniziale = moment('2018-01-01');
 var limiteIniziale = moment('2018-01-01');
 var limiteFinale = moment('2018-12-31');
 $('.prev').prop('disabled', true);
 $('.succ').prop('disabled', false);
+
+var giornoMeseIniziale = dataIniziale.day();
 
 $('.succ').click(function (){ // al click sul bottone succ
     dataIniziale.add(1 , "months"); // aggiungo un mese al mese corrente
@@ -21,7 +19,7 @@ $('.succ').click(function (){ // al click sul bottone succ
     var anno = dataIniziale.year();
     $('.prev').prop('disabled', false);
     stampaFestivi(mese, anno);
-    if (dataIniziale.isSameOrAfter(limiteFinale, 'months')) { // se trovo l'anno 2019
+    if (dataIniziale.isSameOrAfter(limiteFinale, 'months')) {
         $('.succ').prop('disabled', true);
     }
 });
@@ -64,6 +62,8 @@ function stampaFestivi(mes, ann) { // usiamo una funzione che procedera a fare u
 
 function stampaGiorniMese(meseDaStampare) {
     $('.calendar').empty(); // ad ogni click cancello il contenuto
+    var giornoMeseIniziale = dataIniziale.isoWeekday();
+    stampaGiorniFittizi(giornoMeseIniziale); // invochiamo funzione template gg clear
     var giorniMese = meseDaStampare.daysInMonth(); // indica i gg del mese  (in questo caso della dataIniziale)
     var nomeMese = meseDaStampare.locale('it').format('MMMM'); // richiediamo il nome mese con MMMM e in lingua IT
     var standardDay = meseDaStampare.clone();
@@ -76,5 +76,12 @@ function stampaGiorniMese(meseDaStampare) {
         var templatePop = templateGiorno(giornoDaInserire); // popoliamo il template con i dati dell'oggetto
         $('.calendar').append(templatePop);
         standardDay.add(1, 'day'); // aggiungo un giorno per modificare il dataDay
+    }
+}
+
+function stampaGiorniFittizi(gMeseInizi) {
+    for (var i = 0; i < gMeseInizi - 1; i++) {
+        var contenitore = '<div class="ggCalendario2"></div>';
+        $('.calendar').append(contenitore);
     }
 }

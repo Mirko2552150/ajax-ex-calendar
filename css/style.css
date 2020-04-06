@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F2%2F56%2F9RekFJ.jpg&f=1&nofb=1");
+    background-image: url("https://cdn.wallpapersafari.com/35/68/dJTcwn.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -29,10 +29,10 @@
 }
 
 .calendar {
-    border: 2px solid black;
+    border: 2px solid white;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: rgba(255,255,255,0.8);
     border-radius: 10px;
 
 }
@@ -76,10 +76,10 @@
 
 }
 
-.ggCalendario {
+.ggCalendario, .ggCalendario2 {
     width: calc(100% / 7);
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid white;
     float: left;
     display: flex;
     flex-direction: column;
