@@ -6,37 +6,37 @@ var dataIniziale = moment('2018-01-01'); // inseriamo la data da cui vogliamo pa
 stampaGiorniMese(dataIniziale); // mi stampo i giorni ed il mese corrente
 // a seguito del click stampare il mese successivo
 stampaFestivi(0, 2018); // lo faccio partire dal mese 0 = gennaio
-
 var dataIniziale = moment('2018-01-01');
 var limiteIniziale = moment('2018-01-01');
 var limiteFinale = moment('2018-12-31');
+$('.prev').prop('disabled', true);
+$('.succ').prop('disabled', false);
 
 $('.succ').click(function (){ // al click sul bottone succ
     dataIniziale.add(1 , "months"); // aggiungo un mese al mese corrente
-    $('.prev').prop('disabled', false);
     stampaGiorniMese(dataIniziale);
     var mese = dataIniziale.month();
     var anno = dataIniziale.year();
+    $('.prev').prop('disabled', false);
     stampaFestivi(mese, anno);
-    if (anno == 2019) { // se trovo l'anno 2019
-        $('body').empty(); // svuoto il body
-        alert("NON SEI NELL'ANNO CORRETTO"); // esce l'alert
-        location.reload(); // ripristina la pagina iniziale (esempio refresh)
+    if (dataIniziale.isSameOrAfter(limiteFinale, 'months')) { // se trovo l'anno 2019
+        $('.succ').prop('disabled', true);
     }
 });
 
 // a seguito del click stampare il mese precedente
 $('.prev').click(function (){ // al click sul bottone succ
     if(dataIniziale.isSameOrBefore(limiteIniziale)){
-         alert('Hai provato ad hackerarmi! :( ');
+        alert('Hai provato ad hackerarmi! :( ');
     } else {
         dataIniziale.subtract(1, 'month');
         stampaGiorniMese(dataIniziale);
         var mese = dataIniziale.month();
         var anno = dataIniziale.year();
         stampaFestivi(mese, anno);
+        $('.succ').prop('disabled', false);
         if(dataIniziale.isSameOrBefore(limiteIniziale)) {
-           $('.prev').prop('disabled', true);
+            $('.prev').prop('disabled', true);
         }
     }
 });
@@ -50,7 +50,6 @@ function stampaFestivi(mes, ann) { // usiamo una funzione che procedera a fare u
             month: mes
         },
         success: function (data) { // al successo della chiamata
-            console.log(data.response);
             var festivita = data.response; // var richiamando dot notation
             for (var i = 0; i < festivita.length; i++) { // cicliamo sulla lunghezza dell'arrey
                 var festivo = festivita[i]; // diamo una var agli iesimi contenuti (in questo caso oggetti)
@@ -69,7 +68,6 @@ function stampaGiorniMese(meseDaStampare) {
     var standardDay = meseDaStampare.clone();
     $('#nome-mese').text(nomeMese); // allo scatenare della funzione sovrascrivo in # nome mese il NomeMEse che dalla VAR in Ingress
     for (var i = 1; i <= giorniMese; i++) { // da uno a i giorni del mese
-        // $('.calendar').append('<div class="ggCalendario">' + i + ' ' + nomeMese + '</div>');
         var giornoDaInserire = { // creiamo oggetto per HBars
             day: i + ' ' + nomeMese,
             dataDay: standardDay.format('YYYY-MM-DD') // usiamo il nostro clone che potrò modificare, standardDay scritto = dataFestivo, cosi da poter usare selezionatore avanzato a riga 63

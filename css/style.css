@@ -58,6 +58,13 @@
 
 }
 
+.succ:disabled {
+    background-color: white;
+    color: #ececec;
+    cursor: not-allowed;
+
+}
+
 .box-calendar-top span {
     font-size: 30px;
     font-weight: bold;
